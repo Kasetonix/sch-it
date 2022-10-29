@@ -2,4 +2,7 @@
 *
 !*.*
 !*/
+
+# Ignore containing non-text files
 docs
+*.zip
