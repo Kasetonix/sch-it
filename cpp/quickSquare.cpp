@@ -12,18 +12,14 @@ int main() {
 	currentExponent = base; result = 1;
 
 	while (power > 0) {
-		/* W wypadku gdy wykładnik jest liczbą nieparzystą
-		 * mnożymy wynik przez obecny wynik
-		 * pomocniczej potęgi [currentExponent] */
+		/* Algorytm zamiany dec -> bin
+		 * z obliczeniem wartości potęgi */
 		if (power % 2 == 1) 
 			result *= currentExponent;
-
-		/* dzielimy wykładnika przez dwa (bez reszty) */
 		power /= 2;
 
-		/* W wypadku, gdy wykładnik po dzieleniu nadal
-		 * jest większy od zera podnosimy pomocniczą potęgę
-		 * do potęgi 2 */
+		/* Podnoszenie potęgi tymczasowej do potęgi 2,
+		 * by przejść do następnego kroku */
 		if (power > 0)
 			currentExponent *= currentExponent;
 	}

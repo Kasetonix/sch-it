@@ -30,7 +30,6 @@ int main() {
 		cout << "Wprowadzona fraza została znaleziona na indeksie " << phraseFoundIndex << "\n"; 
 
 	
-
 	/* [substr] Zwracanie stringa od podanego indeksu i o podanej długości */
 	cout << "\n---[substr]---\n";
 	int stringIndex = 0, stringLen = 0;
