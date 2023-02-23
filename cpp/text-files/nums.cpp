@@ -13,7 +13,7 @@ int main() {
     ofstream outputFile;
     string dataLine, maxDigitSumNum, minDigitSumNum;
     unsigned short currentLastDigit;
-    unsigned int evenAmount = 0, currentDigitSum, maxDigitSum = 0, minDigitSum = 81, currentDigit, previousDigit;
+    unsigned int evenAmount = 0, currentDigitSum, maxDigitSum = 0, minDigitSum = 81, currentDigit, previousDigit, index = 0;
     bool isRaising;
 
     /* Otwieranie odpowiednich plików */
@@ -21,8 +21,10 @@ int main() {
     outputFile.open("wynik.txt", ios::app);
 
     /* Sprawdzanie czy odpowiednie pliki otworzyły się poprawnie */
-    if (!inputFile.good() || !outputFile.good())
-        cout << "[ERR] couldn't open files." << "\n";
+    if (!inputFile.good() || !outputFile.good()) {
+        cout << "[ERR] couldn't open files." << "\n"; 
+        return 1;
+    }
 
     /* Iteracja przez wszystkie liczby */
     for (int line = 0; line < 1000; line++) {
@@ -35,6 +37,7 @@ int main() {
             evenAmount++;
     }
 
+    /* Wpisanie odpowiedniego wyniku do pliku wynikowego */
     outputFile << "Liczba liczb parzystych wynosi: " << evenAmount << "\n";
 
     /* Ponowne otwarcie pliku wejściowego */
@@ -43,8 +46,10 @@ int main() {
     dataLine = "";
 
     /* Sprawdzanie czy odpowiednie pliki otworzyły się poprawnie */
-    if (!inputFile.good() || !outputFile.good())
+    if (!inputFile.good() || !outputFile.good()) {
         cout << "[ERR] couldn't open files." << "\n";
+        return 1;
+    }
 
     /* Iteracja przez cały plik wejściowy */
     for (int line = 0; line < 1000; line++) {
@@ -52,7 +57,7 @@ int main() {
         inputFile >> dataLine;
         currentDigitSum = 0;
         
-        for (int index = 0; index < dataLine.size() - 1; index++) {
+        for (index = 0; index < dataLine.size() - 1; index++) {
             /* Zamiana cyfry z stringa na inta */
             currentDigit = dataLine[index] - '0';
             /* Dodanie obecnej cyfry do sumy */
@@ -71,6 +76,7 @@ int main() {
         }
     }
 
+    /* Wpisanie odpowiednich wyników do pliku wyjściowego */
     outputFile << "Liczba z maksymalną sumą cyfr: " << maxDigitSumNum << "\n"; 
     outputFile << "Liczba z minimalną sumą cyfr: " << minDigitSumNum << "\n"; 
     
@@ -80,13 +86,48 @@ int main() {
     dataLine = "";
 
     /* Sprawdzanie czy odpowiednie pliki otworzyły się poprawnie */
-    if (!inputFile.good() || !outputFile.good())
+    if (!inputFile.good() || !outputFile.good()) {
         cout << "[ERR] couldn't open files." << "\n";
-
-    while (!inputFile.eof()) {
-        isRaising = true;
+        return 1;
     }
 
+    /* Iteracja przez cały plik wejściowy */
+    for (int line = 0; line < 1000; line++) {
+        /* Założenie, że liczba ma cyfry rosnące */
+        isRaising = true;
+        /* Wprowadzenie linijki do zmiennej */
+        inputFile >> dataLine;
+        /* Resetowanie wartości zmiennych */
+        index = 0;
+        currentDigit = dataLine[0];
+
+        /* Pętla iterująca, gdy cyfry liczby nadal wydają się rosnące oraz
+         * gdy nie zakończyło się słowo */
+        while (isRaising && index <= (dataLine.size() - 1)) {
+            /* Aktualizacja obecnej cyfry */
+            currentDigit = dataLine[index];
+
+            /* Sprawdzanie, czy liczba ma dotąd cyfry rosnące
+             * (wykluczenie indexu == 0, bo wtedy nie ma sensu porównanie
+             * z poprzednią cyfrą liczby) */
+            if (!(previousDigit < currentDigit) && index != 0) {
+                isRaising = false;
+                break;
+            }
+
+            /* Jeżeli po zakończeniu się cyfry nie zauważono żeby cyfry nie były rosnące,
+             * wpisanie ją do pliku wynikowego */
+            if (index == dataLine.size() - 1) {
+                outputFile << dataLine << "\n";
+            }
+
+            /* Przygotowanie pętli do następnej iteracji */
+            previousDigit = currentDigit;
+            index++;
+        }
+    }
+
+    /* Zamknięcie obu programów */
     inputFile.close();
     outputFile.close();
     return 0;

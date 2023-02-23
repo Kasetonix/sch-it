@@ -1,3 +1,7 @@
 Liczba liczb parzystych wynosi: 495
 Liczba z maksymalną sumą cyfr: 187869866
 Liczba z minimalną sumą cyfr: 13016121
+2389
+23567
+123456789
+3468
