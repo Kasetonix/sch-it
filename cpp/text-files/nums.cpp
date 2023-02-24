@@ -57,22 +57,24 @@ int main() {
         inputFile >> dataLine;
         currentDigitSum = 0;
         
-        for (index = 0; index < dataLine.size() - 1; index++) {
+        for (index = 0; index < dataLine.size(); index++) {
             /* Zamiana cyfry z stringa na inta */
             currentDigit = dataLine[index] - '0';
             /* Dodanie obecnej cyfry do sumy */
             currentDigitSum += currentDigit;
-            
-            /* Jeżeli będzie znaleziona liczba z większą sumą
-             * zmienna o maksymalnej sumie zostanie nadpisana.
-             * Tak samo jest z minimalną sumą */
-            if (currentDigitSum > maxDigitSum) { 
-                maxDigitSum = currentDigitSum;
-                maxDigitSumNum = dataLine;
-            } else if (currentDigitSum < minDigitSum) {
-                minDigitSum = currentDigitSum;
-                minDigitSumNum = dataLine;
-            }
+        }
+
+        /* Jeżeli będzie znaleziona liczba z większą sumą
+         * zmienna o maksymalnej sumie zostanie nadpisana.
+         * Tak samo jest z minimalną sumą */
+        if (currentDigitSum > maxDigitSum) { 
+            maxDigitSum = currentDigitSum;
+            maxDigitSumNum = dataLine;
+        }
+
+        if (currentDigitSum < minDigitSum) {
+            minDigitSum = currentDigitSum;
+            minDigitSumNum = dataLine;
         }
     }
 
@@ -103,7 +105,7 @@ int main() {
 
         /* Pętla iterująca, gdy cyfry liczby nadal wydają się rosnące oraz
          * gdy nie zakończyło się słowo */
-        while (isRaising && index <= (dataLine.size() - 1)) {
+        while (isRaising && index < dataLine.size()) {
             /* Aktualizacja obecnej cyfry */
             currentDigit = dataLine[index];
 

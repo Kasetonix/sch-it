@@ -1,6 +1,6 @@
 Liczba liczb parzystych wynosi: 495
 Liczba z maksymalną sumą cyfr: 187869866
-Liczba z minimalną sumą cyfr: 13016121
+Liczba z minimalną sumą cyfr: 10010
 2389
 23567
 123456789
