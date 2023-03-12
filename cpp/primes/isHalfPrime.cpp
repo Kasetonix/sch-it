@@ -66,9 +66,12 @@ bool isHalfPrime(unsigned int number) {
         } else divisor++;
     }
 
-    /* Jeżeli wszystkie konieczne warunki są spełnione, zwrócenie że
-     * liczba jest liczbą półpierwszą */
+    /* Zwrócenie false, jeżeli pozostała liczba nie jest jedynką lub
+     * jeżeli nie znaleziono dokładnie dwóch dzielników */
     if (number != 1 || primeDivNum != 2)
         return false;
+
+    /* Jeżeli wszystkie konieczne warunki są spełnione, zwrócenie że
+     * liczba jest liczbą półpierwszą */
     return true;
 }
