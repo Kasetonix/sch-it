@@ -1,19 +1,33 @@
 #include <iostream>
+#include <fstream>
 using std::cout;
 using std::cin;
+using std::ios;
+using std::ofstream;
+using std::string;
 
-void countDiffDiv(int number);
+unsigned int countDiffDiv(int number);
 
 int main() {
     int num;
-    cout << "Wprowadź liczbę policzenia liczby" << "\n";
-    cout << "jej różnych czynników pierwszych: "; cin >> num;
-    countDiffDiv(num);
+    ofstream outputFile;
 
+    outputFile.open("diffDivNum_out.txt");
+    if (!outputFile.good()) {
+        cout << "Couldn't open output file." << "\n";
+        return 1;
+    }
+
+    cout << "Wprowadź liczbę do policzenia liczby" << "\n";
+    cout << "jej różnych czynników pierwszych: "; cin >> num;
+    
+    outputFile << "Liczba czynników pierwszych podanej liczby: " << countDiffDiv(num);
+
+    outputFile.close();
 	return 0;
 } 
 
-void countDiffDiv(int number) {
+unsigned int countDiffDiv(int number) {
     /* Najmniejszy możliwy dzielnik poza 1 */
     unsigned int divisor = 2;
     unsigned int lastDivisor;
@@ -39,5 +53,5 @@ void countDiffDiv(int number) {
         } else divisor++;
     }
 
-    cout << "Liczba różnych dzielników: " << diffDivCount << "\n";
+    return diffDivCount;
 }

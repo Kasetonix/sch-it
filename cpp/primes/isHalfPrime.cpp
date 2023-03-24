@@ -1,19 +1,30 @@
 #include <iostream>
+#include <fstream>
 using std::cout;
 using std::cin;
+using std::ofstream;
 
 bool isPrime(unsigned int number);
 bool isHalfPrime(unsigned int number);
 
 int main() {
     unsigned int num;
+    ofstream outputFile;
+
+    outputFile.open("isHalfPrime_out.txt");
+    if (!outputFile.good()) {
+        cout << "Couldn't open output file." << "\n";
+        return 1;
+    }
+
     cout << "Wprowadź liczbę do sprawdzenia: "; cin >> num;
 
     if (isHalfPrime(num))
-        cout << "Liczba jest liczbą półpierwszą." << "\n";
+        outputFile << "Liczba " << num << " jest liczbą półpierwszą." << "\n";
     else
-        cout << "Liczba nie jest liczbą półpierwszą. " << "\n";
+        outputFile << "Liczba " << num << " nie jest liczbą półpierwszą. " << "\n";
 
+    outputFile.close();
 	return 0;
 }
 
