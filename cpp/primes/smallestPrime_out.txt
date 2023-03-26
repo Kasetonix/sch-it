@@ -1,0 +1,1 @@
+Najmniejsza liczba pierwsza większa od podanej liczby: 17

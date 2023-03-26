@@ -1,0 +1,1 @@
+Liczba czynników pierwszych podanej liczby: 3
