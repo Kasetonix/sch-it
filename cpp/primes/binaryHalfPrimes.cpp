@@ -38,7 +38,6 @@ int main() {
             smallestHP = currentHalfPrime;
         if (currentHalfPrime > largestHP)
             largestHP = currentHalfPrime;
-
     }
 
     cout << "Liczba liczb półpierwszych:     " << halfPrimeCount << "\n";

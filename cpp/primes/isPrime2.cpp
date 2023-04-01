@@ -19,7 +19,7 @@ int main() {
 bool isPrime(unsigned int num) {
     /* Sprawdzanie, czy liczba jest parzysta
      * Pozwala nam to nie sprawdzać tego przy pętli poniżej */
-    if (num = 2) 
+    if (num == 2) 
         return true;
     else if (num > 2 && num % 2 == 0)
         return false;
