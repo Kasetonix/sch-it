@@ -11,7 +11,7 @@ int main() {
     if (isPrime(num))   cout << "Podana liczba jest liczbą pierwszą." << "\n";
     else    cout << "Podana liczba nie jest liczbą pierwszą." << "\n";
 
-	return 0;
+    return 0;
 }
 
 bool isPrime(unsigned int num) {

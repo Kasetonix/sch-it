@@ -11,7 +11,7 @@ int main() {
 
     factorise(num);
 
-	return 0;
+    return 0;
 } 
 
 void factorise(int number) {

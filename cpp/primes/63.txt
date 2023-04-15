@@ -1,0 +1,7 @@
+[63.3]
+Liczba liczb półpierwszych:     259
+Najmniejsza liczba półpierwsza: 6
+Największa liczba półpierwsza:  248667
+
+[63.2]
+Liczba ciągów bez '1' koło siebie wynosi: 93
