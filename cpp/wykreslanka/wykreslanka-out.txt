@@ -1,0 +1,15 @@
+[POZIOMO]
+Wiersz: 0 | Kolumna: 194
+Wiersz: 15 | Kolumna: 107
+Wiersz: 27 | Kolumna: 0
+Wiersz: 27 | Kolumna: 140
+Wiersz: 42 | Kolumna: 47
+Wiersz: 55 | Kolumna: 87
+Wiersz: 90 | Kolumna: 87
+Wiersz: 99 | Kolumna: 39
+
+[PIONOWO]
+Kolumna: 0 | Wiersz: 43
+Kolumna: 81 | Wiersz: 78
+Kolumna: 92 | Wiersz: 0
+Kolumna: 199 | Wiersz: 94

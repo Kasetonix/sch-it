@@ -8,9 +8,10 @@ using std::ofstream;
 int main() {
     ifstream input;
     ofstream output;
+    unsigned short column, line = 0;
+    const unsigned short FILE_COLS = 200, FILE_LINES = 100;
+    char file[FILE_COLS][FILE_LINES];
     string currentLine;
-    unsigned int column = 0, line = 0;
-    char file[200][100];
 
     /* Otwarcie plików */
     input.open("wykreslanka.txt");
@@ -20,37 +21,59 @@ int main() {
         return 1;
     }
 
-    // output << "[POZIOMO]" << "\n";
-    // /* Iteracja przez cały plik */
-    // while (input >> currentLine) {
-    //     /* Iteracja przez cały wiersz poza 5 ostatnimi znakami
-    //      * Są one sprawdzane w pętli*/
-    //     for (column = 0; column < currentLine.size() - 5; column++) {
-    //         /* Odrzucanie przypadków, w których kolejne litery
-    //          * słowa 'matura' nie są obecne na odpowiednim miejscu */
-    //         if      (currentLine[column+0] != 'm') continue;
-    //         else if (currentLine[column+1] != 'a') continue;
-    //         else if (currentLine[column+2] != 't') continue;
-    //         else if (currentLine[column+3] != 'u') continue;
-    //         else if (currentLine[column+4] != 'r') continue;
-    //         else if (currentLine[column+5] != 'a') continue;
-    //         else /* Jeżeli znaki tworzą wyraz 'matura', zapisanie jego wiersza i kolumny */ 
-    //             output << "Wiersz: " << line << " | " << "Kolumna: " << column << "\n";
-    //     }
-    //
-    //     /* Aktualizacja zmiennej przechowującej numer linijki */
-    //     line++;
-    // }
-    
     /* Skopiowanie pliku do tabeli dwuwymiarowej 'file' */
     while (input >> currentLine) {
         /* iteracja przez całą linijkę i przekopiowanie jej do tabeli */
-        for (column = 0; column < 100; column++)
-            file[line][column] = currentLine[column];
+        for (column = 0; column < currentLine.size(); column++) {
+            file[column][line] = currentLine[column];
+        }
         line++; /* zwiększenie zmiennej przechowującej linijkę */
     }
 
     input.close();
+
+    /* NOTE: Wyszukiwanie 'matura' poziomo */
+    output << "[POZIOMO]" << "\n";
+    /* Iteracja przez całą tablicę */
+    for (line = 0; line < FILE_LINES; line++) {
+        /* Iteracja przez cały wiersz poza 5 ostatnimi znakami
+         * Są one sprawdzane w pętli*/
+        for (column = 0; column < FILE_COLS - 5; column++) {
+            /* Odrzucanie przypadków, w których kolejne litery
+             * słowa 'matura' nie są obecne na odpowiednim miejscu */
+            if      (file[column+0][line] != 'm') continue;
+            else if (file[column+1][line] != 'a') continue;
+            else if (file[column+2][line] != 't') continue;
+            else if (file[column+3][line] != 'u') continue;
+            else if (file[column+4][line] != 'r') continue;
+            else if (file[column+5][line] != 'a') continue;
+            else /* Jeżeli znaki tworzą wyraz 'matura', zapisanie jego wiersza i kolumny */ 
+                output << "Wiersz: " << line << " | " << "Kolumna: " << column << "\n";
+        }
+    }
+
+    output << "\n";
+
+    /* NOTE: Wyszukiwanie 'matura' pionowo */
+    output << "[PIONOWO]" << "\n";
+    /* Iteracja przez wszystkie kolumny tablicy */
+    for (column = 0; column < FILE_COLS; column++) {
+        /* Iteracja przez całą kolumnę poza 5 ostatnimi znakami
+         * Są one sprawdzane w pętli*/
+        for (line = 0; line < FILE_LINES - 5; line++) {
+            /* Odrzucanie przypadków, w których kolejne litery
+             * słowa 'matura' nie są obecne na odpowiednim miejscu */
+            if      (file[column][line+0] != 'm') continue;
+            else if (file[column][line+1] != 'a') continue;
+            else if (file[column][line+2] != 't') continue;
+            else if (file[column][line+3] != 'u') continue;
+            else if (file[column][line+4] != 'r') continue;
+            else if (file[column][line+5] != 'a') continue;
+            else /* Jeżeli znaki tworzą wyraz 'matura', zapisanie jego wiersza i kolumny */ 
+                output << "Kolumna: " << column << " | " << "Wiersz: " << line << "\n";
+        }
+    }
+
     output.close();
     return 0;
 }
