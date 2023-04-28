@@ -15,7 +15,6 @@ int main() {
      * wartość, to trzeba podzielić zwracaną wartość przez 2.
     * Dla efektywności licznik jest mnożony przez 2 */
     unsigned int arrayLen = (2 * sizeof(array) / sizeof(typeid(array).name()));
-    cout << arrayLen << "\n"; 
 
     cout << "[ARRAY] przed sortowaniem:" << "\n";
     PrintArray(array, arrayLen);
