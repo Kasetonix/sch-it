@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
-
 using std::cout;
-using std::cin;
 using std::ios;
 using std::ifstream;
 using std::ofstream;

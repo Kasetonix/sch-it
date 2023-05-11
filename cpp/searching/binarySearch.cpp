@@ -7,6 +7,7 @@ using std::ifstream;
 using std::ofstream;
 
 int BinarySearch (int checkedNum, int array[], unsigned int arrayLen);
+void SelectionSort (int array[], unsigned int arrayLen);
 void PrintArray (int array[], unsigned int arrayLen);
 
 int main() {
@@ -18,7 +19,7 @@ int main() {
 
     /* Otwarcie plików wejściowego i wyjściowego */
     inputFile.open("liczby.txt");
-    outputFile.open("linearSearch_out.txt", std::ios::app);
+    outputFile.open("binarySearch_out.txt");
 
     /* Zwrócenie błędu w razie niepoprawnego otwarcia plików */
     if (!inputFile.good() || !outputFile.good()) {
@@ -33,7 +34,10 @@ int main() {
     for (int currentIndex = 0; currentIndex < ARRAYLEN; currentIndex++)
         inputFile >> array[currentIndex];
     
-    /* Zapisanie odpowiedzi */
+    /* Przesortowanie tabeli niemalejąco, by móc przesortować binarnie */
+    SelectionSort(array, ARRAYLEN);
+
+    /* Wyszukanie liczby zapytanej przez użytkownika */
     foundIndex = BinarySearch(checkedNum, array, ARRAYLEN);
 
     /* Wypisanie indeksu znalezionej cyfry */
@@ -48,11 +52,11 @@ int main() {
 }
 
 int BinarySearch(int checkedNum, int array[], unsigned int arrayLen) {
-    /* Ustawienie lewego indeksu na  */
+    /* Ustawienie lewego indeksu na 0, a prawego na ostatni element tablicy */
     unsigned int leftIndex = 0, rightIndex = arrayLen - 1, centerIndex;
     
     /* Dopóki lewy i prawy indeks nie zrównły się bądź minęły się */
-    while (leftIndex < rightIndex) {
+    while (leftIndex != rightIndex) {
         /* Obliczenie środkowego indeksu spawdzanego przedziału */
         centerIndex = (leftIndex + rightIndex) / 2;
         /* Jeżeli liczba pod indeksem środka sprawdzanego przedziału
@@ -65,11 +69,36 @@ int BinarySearch(int checkedNum, int array[], unsigned int arrayLen) {
             rightIndex = centerIndex;
     }
     
-    if (centerIndex > 0)
-        return centerIndex;
+    /* Zwrócenie szukanego indeksu, jeżeli zostanie znaleziony */
+    if (array[leftIndex] == checkedNum)
+        return leftIndex;
 
     /* Zwrócenie -1, kiedy nie znajdzie liczby na żadnym indeksie */
     return -1;
+}
+
+/* Algorytm sortowania przez wstawianie */
+void SelectionSort(int array[], unsigned int arrayLen) {
+    unsigned int checkedNum;
+    unsigned int smallestIndex;
+    unsigned int comparedIndex;
+    unsigned int swapTmp;
+
+    /* Iteracja przez całość tablicy poza ostatnim - 
+     * po wszystkich poprzednich iteracjach ostatnia 
+     * cyfra będzie największa */
+    for (checkedNum = 0; checkedNum < arrayLen - 1; checkedNum++) {
+        /* Szukanie indeksu najmniejszej liczby tablicy */
+        smallestIndex = checkedNum;
+        for (comparedIndex = checkedNum + 1; comparedIndex < arrayLen; comparedIndex++)
+            if (array[comparedIndex] < array[smallestIndex]) 
+                smallestIndex = comparedIndex; 
+
+        /* Ustawienie najmniejszej liczby tabeli na początek */
+        swapTmp = array[checkedNum];
+        array[checkedNum] = array[smallestIndex];
+        array[smallestIndex] = swapTmp;
+    }
 }
 
 void PrintArray(int array[], unsigned int arrayLen) {
