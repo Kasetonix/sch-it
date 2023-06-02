@@ -50,7 +50,7 @@ void InsertionSort(int array[], unsigned int arrayLen) {
 
         /* Kiedy pętla się zakończy wstawienie sprawdzanej liczby
          * w indeks po tym, który spowodował wyjście z pętli*/
-        array[comparedIndex+1] = array[0];
+        array[comparedIndex + 1] = array[0];
     }
 }
 
