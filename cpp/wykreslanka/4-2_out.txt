@@ -1,0 +1,2 @@
+Najdłuższy ciąg takich samych znaków ma długość: 10
+Ciagi o tej długości znajdują się w linijkach: 62 72 

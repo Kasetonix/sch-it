@@ -15,7 +15,7 @@ int main() {
 
     /* Otwarcie plików */
     input.open("wykreslanka.txt");
-    output.open("wykreslanka-out.txt", std::ios::app);
+    output.open("4-1_out.txt", std::ios::app);
     if (!input.good() || !output.good()) {
         cout << "Couldn't open input / output file" << "\n";
         return 1;
