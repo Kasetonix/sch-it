@@ -51,5 +51,5 @@ int main() {
 
     inputFile.close();
     outputFile.close();
-	return 0;
+    return 0;
 }
