@@ -1,0 +1,6 @@
+Tablica przesortowana malejąco: 
+2 4 6 3 8 6 88 1 5 84 62 
+Tablica przesortowana rosnąco: 
+1 2 3 4 5 6 6 8 62 84 88 
+Tablica przesortowana malejąco: 
+88 84 62 8 6 6 5 4 3 2 1 
