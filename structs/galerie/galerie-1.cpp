@@ -13,7 +13,7 @@ struct local {
     unsigned int width;
 };
 
-const unsigned short CITY_NUM = 50, LOCAL_NUM = 70;
+const unsigned short CITY_NUM = 10, LOCAL_NUM = 70;
 
 void SelectionSort(local tab[CITY_NUM][LOCAL_NUM], unsigned int array_len);
 
@@ -25,8 +25,8 @@ int main() {
     /* pliki wejściowy i wyjściowy */
     ifstream infile;
     ofstream outfile;
-    infile.open("galerie.txt");
-    outfile.open("galerie-1-wynik.txt");
+    infile.open("galerie_przyklad.txt");
+    outfile.open("wynik.txt", std::ios::app);
     
     /* sprawdzanie, czy pliki są otwarte poprawnie */
     if (!infile.good() || !outfile.good()) {
@@ -49,14 +49,17 @@ int main() {
 
     /* Zamknięcie pliku wejściowego */
     infile.close();
+
+    /* Nagłówek zadania */
+    outfile << "----- 1 -----" << "\n";
     
     /* Przesortowanie tablicy według kodów kraju */
     SelectionSort(local_tab, CITY_NUM);
 
     /* Zliczanie kolejno występujących kodów państw:
      * równoważne ze zliczaniem liczby miast w danym pańswie <- miasta nie powtarzają się */
-    for (city_index = 0; city_index < CITY_NUM - 1; city_index++) {
-        if (local_tab[city_index][0].mall_country_code == local_tab[city_index + 1][0].mall_country_code){
+    for (city_index = 0; city_index < CITY_NUM; city_index++) {
+        if (local_tab[city_index][0].mall_country_code == local_tab[city_index + 1][0].mall_country_code) {
             current_count++;
             continue;
         } else {
@@ -74,6 +77,7 @@ int main() {
         outfile << "\n";
     } */
 
+    outfile << "\n\n";
     outfile.close();
     return 0;
 }
