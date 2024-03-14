@@ -16,8 +16,9 @@ const unsigned short CITY_NUM = 50, LOCAL_NUM = 70;
 
 int main() {
     local local_tab[CITY_NUM][LOCAL_NUM];
-    string c_country, c_city;
-    short mall_index = 0, local_index = 0, c_length = 0, c_width = 0, c_area = 0, c_local_num = 0;
+    string c_country, c_city, g_area_city, s_area_city;
+    short mall_index = 0, local_index = 0, c_length = 0, c_width = 0, c_area = 0,
+        c_local_num = 0, g_area = 0, s_area = 32767;
 
     /* pliki wejściowy i wyjściowy */
     ifstream infile;
@@ -48,7 +49,7 @@ int main() {
     infile.close();
 
     /* Nagłówek zadania */
-    outfile << "----- 2a -----" << "\n";
+    outfile << "----- 2b -----" << "\n";
     
     /* sumowanie wszystkich powierzchni i zliczanie lokali */
     for (mall_index = 0; mall_index < CITY_NUM; mall_index++) {
@@ -58,16 +59,26 @@ int main() {
                 c_local_num++;
             }
         }
-        
-        /* Wypisanie otrzymanych danych do pliku */
-        outfile << local_tab[mall_index][0].mall_city << " " << c_area << " " << c_local_num << "\n"; 
+
+        /* Szukanie największej i najmniejszej powierzchni całkowitej */
+        if (c_area > g_area) {
+            g_area = c_area;
+            g_area_city = local_tab[mall_index][0].mall_city;
+        } else if (c_area < s_area) {
+            s_area = c_area;
+            s_area_city = local_tab[mall_index][0].mall_city;
+        }
 
         /* Zerowanie liczników */
         c_area = 0;
         c_local_num = 0;
     }
+    
+    /* Wypisanie wyników */
+    outfile << g_area_city << " " << g_area << "\n";
+    outfile << s_area_city << " " << s_area << "\n";
 
-    outfile << "\n\n";
+    outfile << "\n";
     outfile.close();
     return 0;
 }
