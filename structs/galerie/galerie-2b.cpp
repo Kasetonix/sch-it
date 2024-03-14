@@ -78,7 +78,7 @@ int main() {
     outfile << g_area_city << " " << g_area << "\n";
     outfile << s_area_city << " " << s_area << "\n";
 
-    outfile << "\n";
+    outfile << "\n\n";
     outfile.close();
     return 0;
 }

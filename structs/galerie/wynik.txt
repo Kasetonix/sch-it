@@ -78,3 +78,8 @@ Duisburg 3948 61
 Essen 4760
 Wilno 1620
 
+
+----- 3 -----
+Berlin 35
+Kolonia 18
+
