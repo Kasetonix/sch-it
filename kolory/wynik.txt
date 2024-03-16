@@ -1,0 +1,10 @@
+----- 1 -----
+Liczba czarnych pikseli: 610
+Liczba białych pikseli:  590
+
+----- 2 -----
+Najdłuższy ciąg (w poziomie): 33
+
+----- 3 -----
+Najdłuższy ciąg (w pionie): 56
+
