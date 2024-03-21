@@ -1,0 +1,9 @@
+----- 1 -----
+Liczba liczb parzystych w pliku: 497
+
+----- 2 -----
+Największa liczba (10): 64502
+Najwięszka liczba (2):  1111101111110110
+
+----- 3 -----
+Liczba liczb o długości 9: 101
