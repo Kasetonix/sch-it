@@ -7,6 +7,7 @@ using std::ifstream;
 using std::ofstream;
 
 unsigned int GetDecimal(string binary);
+string GetBinary(unsigned int decimal);
 
 struct num {
     unsigned int dec;
@@ -15,7 +16,7 @@ struct num {
 
 int main() {
     const unsigned short FILE_LEN = 1000;
-    unsigned int index, even_count = 0, largest_num_index, largest_num = 0, nine_len_count = 0;
+    unsigned int index, even_count = 0, largest_num_index, largest_num = 0, nine_len_count = 0, nine_sum = 0;
     num num_tab[FILE_LEN]; 
 
     /* Pliki */
@@ -58,10 +59,12 @@ int main() {
     for (index = 0; index < FILE_LEN; index++) {
         if (num_tab[index].bin.length() == 9) {
             nine_len_count++;
+            nine_sum += num_tab[index].dec;
         }
     }
 
-    outfile << "Liczba liczb o długości 9: " << nine_len_count << "\n";
+    outfile << "Liczba liczb o długości 9:   " << nine_len_count << "\n";
+    outfile << "Suma liczb o długości 9 (2): " << GetBinary(nine_sum) << "\n";
 
     return 0;
 }
@@ -74,4 +77,23 @@ unsigned int GetDecimal(string binary) {
     }
 
     return decimal;
+}
+
+string GetBinary(unsigned int decimal) {
+    string binary;
+    
+    while (decimal > 0) {
+        /* Sprawdzanie, czy liczba jest podzielna przez dwa
+         * - Jeżeli jest, to dokładamy '0' na jej początek 
+         * - Jeżeli nie jest, to dokładamy '1' */
+        if (decimal % 2 == 0)
+            binary = '0' + binary;
+        else
+            binary = '1' + binary;
+
+        /* Przechodzenie do następnej liczby */
+        decimal /= 2;
+    }
+
+    return binary;
 }
