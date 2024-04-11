@@ -1,0 +1,2 @@
+a)
+Pole powierzchni figury dla C = 10: 19.75
