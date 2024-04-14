@@ -6,8 +6,7 @@ using std::ios;
 
 float f(float x);
 float g(float x);
-float integral_f(float left_arg, float right_arg, float inter_num);
-float integral_g(float left_arg, float right_arg, float inter_num);
+float integral(float (*f)(float), float left_arg, float right_arg, float inter_num);
 
 int main() {
     const float INTER_NUM = 300;
@@ -19,11 +18,12 @@ int main() {
     ofstream outfile;
     outfile.open("wynik.txt", ios::app);
 
-    area += integral_f(l_index, r_index, INTER_NUM);
-    area -= integral_g(l_index, r_index, INTER_NUM);
+    area += integral(f, l_index, r_index, INTER_NUM);
+    area -= integral(g, l_index, r_index, INTER_NUM);
 
     outfile << "/// 70.1 ///" << "\n";
     outfile << "Pole obszaru pod wykresem: " << area << "\n";
+
     outfile.close();
     return 0;
 }
@@ -36,7 +36,7 @@ float g(float x) {
     return x * ((-x*x) / 30 + 1.0/20) + 1.0/6;
 }
 
-float integral_f(float left_arg, float right_arg, float inter_num) {
+float integral(float (*f)(float), float left_arg, float right_arg, float inter_num) {
     unsigned int index;
     float inter_width, c_arg, f1, f2, area;
     area = 0;
@@ -51,32 +51,6 @@ float integral_f(float left_arg, float right_arg, float inter_num) {
         c_arg += inter_width;
         f2 = f(c_arg);
         area += ((f1 + f2) * inter_width) / 2;
-        f1 = f2;
-    }
-
-    return area;
-}
-
-float integral_g(float left_arg, float right_arg, float inter_num) {
-    unsigned int index;
-    float inter_width, c_arg, f1, f2, area;
-    area = 0;
-
-    /* Wyznaczenie szerokości każdego przedziału (trapezu) */
-    inter_width = (right_arg - left_arg) / inter_num;
-    c_arg = left_arg;
-    f1 = g(c_arg);
-
-    /* Przechodzenie przez cały podany przedział i sumowanie pól trapezów */
-    for (index = 1; index <= inter_num; index++) {
-        c_arg += inter_width;
-        /* Ustalenie wartości funkcji dla prawej krawędzi
-         * (lewa pochodzi z poprzedniej iteracji) */
-        f2 = g(c_arg);
-        /* Wzór na pole trapezu - wysokość leży na osi Ox, a
-         * długościami podstaw są wartości funkcji w danych punktach */
-        area += ((f1 + f2) * inter_width) / 2;
-        /* Zamiana poprzedniej prawej krawędzi na obecną lewą */
         f1 = f2;
     }
 

@@ -6,20 +6,21 @@ using std::cin;
 
 struct point { float x; float y; };
 struct line { float A; float B; float C; };
-bool ArePointsOnTheSameSide(line L,  point P1, point P2);
-void GetPoint(string question, point &P);
-void GetLine(string question, line &L);
+
+bool ArePointsOnTheSameSide(line Line, point Point1, point Point2);
+void GetPoint(string question, point &Point);
+void GetLine(string question, line &Line);
 
 int main() {
     float A, B, C;
-    point P1, P2;
-    line L;
+    point Point1, Point2;
+    line Line;
 
-    GetPoint("Podaj współrzędne pierwszego punktu:", P1);
-    GetPoint("Podaj współrzędne drugiego punktu:", P2);
-    GetLine("Podaj współczynniki prostej:", L);
+    GetPoint("Podaj współrzędne pierwszego punktu:", Point1);
+    GetPoint("Podaj współrzędne drugiego punktu:", Point2);
+    GetLine("Podaj współczynniki prostej:", Line);
 
-    if (ArePointsOnTheSameSide(L, P1, P2))
+    if (ArePointsOnTheSameSide(Line, Point1, Point2))
         cout << "Punkty leżą po tej samej stronie prostej." << "\n";
     else
         cout << "Punkty leżą po tej samej stronie prostej." << "\n";
@@ -27,21 +28,21 @@ int main() {
     return 0;
 }
 
-bool ArePointsOnTheSameSide(line L, point P1, point P2) {
-    return ((L.A*P1.x + L.B*P1.y + L.C) * (L.A*P2.x + L.B*P2.y + L.C));
+bool ArePointsOnTheSameSide(line Line, point Point1, point Point2) {
+    return ((Line.A * Point1.x + Line.B * Point1.y + Line.C) * (Line.A * Point2.x + Line.B * Point2.y + Line.C));
 }
 
-void GetPoint(string question, point &P) {
+void GetPoint(string question, point &Point) {
     cout << question << "\n";
-    cout << "    x = "; cin >> P.x;
-    cout << "    y = "; cin >> P.y;
+    cout << "    x = "; cin >> Point.x;
+    cout << "    y = "; cin >> Point.y;
     cout << "\n";
 }
 
-void GetLine(string question, line &L) {
+void GetLine(string question, line &Line) {
     cout << question << "\n";
-    cout << "    A = "; cin >> L.A;
-    cout << "    B = "; cin >> L.B;
-    cout << "    C = "; cin >> L.C;
+    cout << "    A = "; cin >> Line.A;
+    cout << "    B = "; cin >> Line.B;
+    cout << "    C = "; cin >> Line.C;
     cout << "\n";
 }

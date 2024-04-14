@@ -1,1 +1,7 @@
+/// 70.1 ///
+Pole obszaru pod wykresem: 117.703
 /// 70.2 ///
+Obwód: 126
+
+/// 70.3 ///
+Długość pasów: 429
