@@ -6,15 +6,14 @@ using std::ios;
 using std::ofstream;
 using std::cout;
 
-unsigned int INTER_NUM = 1000;
+unsigned int INTER_NUM = 100;
 
 float f(float x);
 float g(float x);
-float f_integral(float C);
-float g_integral(float C);
 
 int main() {
-    float C = 10, x = 0, diff = 1;
+    float C = 130, x = 0;
+    int diff = 1;
 
     /* plik wyjściowy */
     ofstream outfile;
@@ -24,20 +23,21 @@ int main() {
         return 1;
     }
 
-    /* Dopóki  */
     while (true) {
-        diff = g(x) - f(x);
+        /* dla każdego x: g(x) > f(x) i f(x) < 0 
+         * suma to jest g(x) - f(x)*/
+        diff = floor(g(x)) - ceil(f(x));
         if (diff >= 26)
             break;
         x++;
     }
 
-    if (g(x) != floor(g(x)) || f(x) != floor(f(x))) 
-        x++;
-
-    /* outfile << "a)" << "\n";
-    outfile << "Pole powierzchni figury dla C = 10: " << area << "\n"; */
-    std::cout << x << " "<< floor(g(x)) << " " << ceil(f(x)) << "\n";
+    outfile << "b)" << "\n";
+    outfile << "Współrzędne punktów prostokąta:" << "\n";
+    outfile << "A: (" << floor(g(x)) << "; " << x << ")\n";
+    outfile << "B: (" << floor(g(x)) - 26 << "; " << x << ")\n";
+    outfile << "C: (" << floor(g(x)) - 26 << "; " << C << ")\n";
+    outfile << "D: (" << floor(g(x)) << "; " << C << ")\n";
 
     outfile.close();
     return 0;

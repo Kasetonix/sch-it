@@ -27,7 +27,7 @@ int main() {
     area = int(100 * (g_integral(C) - f_integral(C))) / 100.0;
 
     outfile << "a)" << "\n";
-    outfile << "Pole powierzchni figury dla C = 10: " << area << "\n";
+    outfile << "Pole powierzchni figury dla C = 10: " << area << "\n\n";
 
     outfile.close();
     return 0;

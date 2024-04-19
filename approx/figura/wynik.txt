@@ -1,2 +1,9 @@
 a)
 Pole powierzchni figury dla C = 10: 19.75
+
+b)
+Współrzędne punktów prostokąta:
+A: (9; 30)
+B: (-17; 30)
+C: (-17; 130)
+D: (9; 130)
