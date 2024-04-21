@@ -34,10 +34,10 @@ int main() {
 
     outfile << "b)" << "\n";
     outfile << "Współrzędne punktów prostokąta:" << "\n";
-    outfile << "A: (" << floor(g(x)) << "; " << x << ")\n";
-    outfile << "B: (" << floor(g(x)) - 26 << "; " << x << ")\n";
-    outfile << "C: (" << floor(g(x)) - 26 << "; " << C << ")\n";
-    outfile << "D: (" << floor(g(x)) << "; " << C << ")\n";
+    outfile << "A: (" << x << "; " << floor(g(x)) << ")\n";
+    outfile << "B: (" << x << "; " << floor(g(x)) - 26 << ")\n";
+    outfile << "C: (" << C << "; " << floor(g(x)) - 26 << ")\n";
+    outfile << "D: (" << C << "; " << floor(g(x)) << ")\n";
 
     outfile.close();
     return 0;

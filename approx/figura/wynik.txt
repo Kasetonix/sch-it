@@ -3,7 +3,7 @@ Pole powierzchni figury dla C = 10: 19.75
 
 b)
 Współrzędne punktów prostokąta:
-A: (9; 30)
-B: (-17; 30)
-C: (-17; 130)
-D: (9; 130)
+A: (30; 9)
+B: (30; -17)
+C: (130; -17)
+D: (130; 9)

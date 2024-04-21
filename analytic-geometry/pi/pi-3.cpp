@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 using std::cout;
 using std::ifstream;
@@ -21,6 +22,10 @@ const unsigned short POINT_NUM = 10000;
 bool PointCircleRel(point point, char code);
 /* Zwraca szacowaną liczbę pi biorąc pod uwagę punkty zawarte w kole i w kwadracie */
 float GetPiFromPoints(point points[POINT_NUM], unsigned short checked_points);
+/* Zwraca błąd bezwzględny obliczonego pi */
+float GetError(float pi);
+/* Zwraca wartość bezwzględną podanej liczby */
+float AbsVal(float number);
 
 int main() {
     unsigned short index, point_count = 0;
@@ -30,10 +35,11 @@ int main() {
 
     /* Pliki wejścia/wyjścia */
     ifstream infile;
-    ofstream outfile;
+    ofstream outfile, error_list;
     infile.open("punkty.txt");
     outfile.open("wynik.txt", ios::app);
-    if (!infile.good() && !outfile.good()) {
+    error_list.open("error_list.txt");
+    if (!infile.good() || !outfile.good() || !error_list.good()) {
         cout << "Pliki nie mogły być otwarte" << "\n";
         return 1;
     }
@@ -43,11 +49,13 @@ int main() {
         infile >> points[index].x >> points[index].y;
     infile.close();
 
-    outfile << "/// 4.2 ///" << "\n";
-    outfile << "n = 100:   " << GetPiFromPoints(points, 100) << "\n"; 
-    outfile << "n = 1000:  " << GetPiFromPoints(points, 1000) << "\n"; 
-    outfile << "n = 5000:  " << GetPiFromPoints(points, 5000) << "\n"; 
-    outfile << "n = 10000: " << GetPiFromPoints(points, POINT_NUM) << "\n\n"; 
+    outfile << "/// 4.3 ///" << "\n";
+    outfile << "EPS_1000 = " << GetError(GetPiFromPoints(points, 1000)) << "\n";
+    outfile << "EPS_1700 = " << GetError(GetPiFromPoints(points, 1700)) << "\n";
+
+    /* Zapisywanie kolejnych wartości błędu bezwzględnego obliczonego pi */
+    for (index = 1; index <= 1700; index++)
+        error_list << GetError(GetPiFromPoints(points, index)) << "\n"; 
 
     outfile.close();
     return 0;
@@ -97,3 +105,12 @@ float GetPiFromPoints(point points[POINT_NUM], unsigned short checked_points) {
     return pi;
 }
 
+float GetError(float pi) {
+    return AbsVal(M_PI - pi); 
+}
+
+float AbsVal(float number) {
+    if (number < 0)
+        return -number;
+    return number;
+}
