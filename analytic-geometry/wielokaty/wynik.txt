@@ -1,0 +1,11 @@
+/// 4.1 ///
+Liczba trójkątów:   478
+Liczba pięciokątów: 117
+
+/// 4.2 ///
+Minimalne pole trójkąta: 8
+Maksymalne pole trójkąta: 17605
+
+/// 4.3 ///
+Minimalny promień koła o środku w (0; 0), które przykryje wszystkie wielokąty: 225.016
+
