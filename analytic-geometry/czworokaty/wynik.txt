@@ -1,0 +1,4 @@
+/// 81.1 ///
+Liczba zestawów punktów w pierwszej ćwiartce: 2
+/// 81.2 ///
+Liczba zestawów punktów, które są współliniowe: 24
