@@ -9,3 +9,9 @@ Maksymalne pole trójkąta: 17605
 /// 4.3 ///
 Minimalny promień koła o środku w (0; 0), które przykryje wszystkie wielokąty: 225.016
 
+/// 4.4 ///
+Maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu:       392 6
+Druga maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu: 200 5
+
+/// 4.5 ///
+Średnie pole czworokąta: 656.20

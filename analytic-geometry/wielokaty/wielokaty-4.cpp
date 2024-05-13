@@ -67,10 +67,9 @@ int main() {
         }
     }
 
-    // outfile << "/// 4.4 ///" << "\n";
-    cout << "/// 4.4 ///" << "\n";
-    cout << "Maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu:       " << max_point_count << " " << max_point_count_sides << "\n";
-    cout << "Druga maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu: " << max_2_point_count << " " << max_2_point_count_sides << "\n";
+    outfile << "/// 4.4 ///" << "\n";
+    outfile << "Maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu:       " << max_point_count << " " << max_point_count_sides << "\n";
+    outfile << "Druga maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wielokątu: " << max_2_point_count << " " << max_2_point_count_sides << "\n\n";
 
     outfile.close();
     return 0;
