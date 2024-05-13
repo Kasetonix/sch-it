@@ -1,8 +1,7 @@
-#include <iomanip>
-#include <ios>
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iomanip>
 
 using std::cout;
 using std::ifstream;
@@ -60,8 +59,6 @@ int main() {
 
     // Obliczanie średniego pola
     avg_area = total_area / index;
-    // Usuwanie 
-    // avg_area = (int(100 * avg_area)) / 100.0;
 
     outfile << "/// 4.5 ///" << "\n";
     outfile << "Średnie pole czworokąta: " << fixed << setprecision(2) << avg_area << "\n";
@@ -321,7 +318,6 @@ float QuadsArea(Quad quad) {
     return (CountPointsInsideQuad(quad) + CountPointsOnQuadSides(quad)/2.0 - 1);
 }
 
-
 // Funkcja rysująca czworokąt: przydatna do sprawdzania działania programu
 void DrawQuad(Quad quad) {
     int x, y;
@@ -338,5 +334,4 @@ void DrawQuad(Quad quad) {
         }
         cout << "\n";
     }
-
 }
