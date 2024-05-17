@@ -327,6 +327,7 @@ void DrawQuad(Quad quad) {
         for (x = mr.min_x; x <= mr.max_x; x++) {
             if (IsPointInQuad(quad, { x, y }))
                 cout << "#";
+
             else if (IsPointOnAnySide(quad, { x, y }))
                 cout << "@";
             else
