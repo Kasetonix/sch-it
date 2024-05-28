@@ -16,13 +16,13 @@ struct Item {
 const unsigned ITEM_NUM = 6;
 
 void AskForCrit(unsigned short &crit);
-void Pack(Item item[], unsigned short quant[], unsigned short total_space, unsigned short crit);
-unsigned short GetValue(Item item[], unsigned short quant[]);
-void PrintItems(Item item[], unsigned short quant[], ofstream &outfile);
+void Pack(Item item[], bool is_packed[], unsigned short total_space, unsigned short crit);
+unsigned short GetValue(Item item[], bool is_packed[]);
+void PrintItems(Item item[], bool is_packed[], ofstream &outfile);
 
 int main() {
-    unsigned short crit, total_space = 23;
-    unsigned short quant[ITEM_NUM] = { 0 };
+    unsigned short crit, total_space = 10;
+    bool is_packed[ITEM_NUM] = { false };
     Item item[ITEM_NUM] = { 
         { 6, 6, 6.0/6.0 },
         { 4, 2, 4.0/2.0 },
@@ -41,14 +41,17 @@ int main() {
     }
 
     AskForCrit(crit);
-    Pack(item, quant, total_space, crit);
-    PrintItems(item, quant, outfile);
-    cout << GetValue(item, quant) << "\n\n";
+    Pack(item, is_packed, total_space, crit);
+
+    outfile << "Algorytm pakowania plecaka z ograniczoną liczbą przedmiotów" << "\n";
+    outfile << "Miejsce w plecaku: " << total_space << "\n";
+    PrintItems(item, is_packed, outfile);
+    outfile << "Całkowita wartość plecaka: " << GetValue(item, is_packed) << "\n";
 
     return 0;
 }
 
-// Funkcja pytająca o kryterium pakowania
+// Funckja pytająca o kryterium pakowania
 void AskForCrit(unsigned short &crit) {
     cout << "Podaj kryterium pakowania:" << "\n";
     cout << "   1. Wartość" << "\n";
@@ -72,7 +75,7 @@ bool CompVS(Item item_a, Item item_b) {
     return item_a.v_s > item_b.v_s;
 }
 
-// Funkcja sortująca tablicę zgodnie z wybranym kryterium
+// Funckja sortująca tablicę zgodnie z wybranym kryterium
 void SortItems(Item item[], unsigned short crit) {
     switch (crit) {
         case 1: // sortowanie wg value
@@ -88,36 +91,40 @@ void SortItems(Item item[], unsigned short crit) {
 }
 
 // Funkcja pakująca plecak według danego kryterium
-void Pack(Item item[], unsigned short quant[], unsigned short total_space, unsigned short crit) {
+void Pack(Item item[], bool is_packed[], unsigned short total_space, unsigned short crit) {
     unsigned short index;
     SortItems(item, crit);
 
-    // Dla każdego przedmiotu liczenie ile razy zmieści się w plecaku
-    // oraz zmniejszenie liczby dostępnego miejsca
+    // Dla każdego przedmiotu sprawdzanie czy się mieści.
+    // Jeżeli tak to zmniejszenie miejsca pozostałego w plecaku
+    // i oznaczenie przedmiotu jako spakowany
     for (index = 0; index < ITEM_NUM; index++) {
-        quant[index] = total_space / item[index].space;
-        total_space %= item[index].space;
+        if (total_space < item[index].space)
+            continue;
+
+        is_packed[index] = true;
+        total_space -= item[index].space;
     }
 }
 
 // Funkcja obliczająca wartość plecaka
-unsigned short GetValue(Item item[], unsigned short quant[]) {
+unsigned short GetValue(Item item[], bool is_packed[]) {
     unsigned short value = 0, index;
 
-    // Dla każdego przedmiotu mnożenie 
-    // liczby spakowanych sztuk razy wartość tego przedmiotu
+    // Dodanie wartości wszystkich spakowanych przedmiotów
     for (index = 0; index < ITEM_NUM; index++)
-        value += quant[index] * item[index].val;
+        if (is_packed[index])
+            value += item[index].val;
     
     return value;
 }
 
-// Funkcja wypisująca tablicę przedmiotów
-void PrintItems(Item item[], unsigned short quant[], ofstream &outfile) {
+// Funkcja wypisująca tablicę spakowanych przedmiotów
+void PrintItems(Item item[], bool is_packed[], ofstream &outfile) {
     unsigned short index;
 
-    for (index = 0; index < ITEM_NUM; index++) {
-        outfile << quant[index] << " x " 
-             << "{ " << item[index].val<< ", " << item[index].space << ", " << item[index].v_s << " }" << "\n";
-    }
+    outfile << "Przedmioty w plecaku: " << "\n";
+    for (index = 0; index < ITEM_NUM; index++)
+        if (is_packed[index])
+            outfile << "    { " << item[index].val<< ", " << item[index].space << ", " << item[index].v_s << " }" << "\n";
 }
