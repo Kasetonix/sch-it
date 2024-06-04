@@ -1,0 +1,54 @@
+Lp. │ nazwa artykułu  │ masa │ cena  │ c/m
+————│—————————————————│——————│———————│—————
+1.  │ rowerek         │ 8kg  │ 320zł │ 40
+2.  │ wózek dla lalek │ 4kg  │ 152zł │ 38
+3.  │ lalka           │ 1kg  │ 37zł  │ 37
+4.  │ duży miś        │ 2kg  │ 70zł  │ 35
+5.  │ klocki          │ 3kg  │ 99zł  │ 33
+6.  │ hulajnoga       │ 5kg  │ 155zł │ 31
+7.  │ mały miś        │ 1kg  │ 30zł  │ 30
+
+
+———————————————————————————————————————————————————————
+      2.1 │ Strategia I │ Strategia II │ Strategia III
+——————————│—————————————│——————————————│———————————————
+Zawartość │ rowerek     │ lalka × 10   │ rowerek
+          │ duży miś    │              │ lalka × 2
+——————————│—————————————│——————————————│———————————————
+Wartość   │ 390zł       │ 370zł        │ 394zł
+———————————————————————————————————————————————————————
+
+
+2.2 ———————————————————————————————————————————————————————
+krok 1: Dla i = 1 do n wykonaj K[i] ← 0
+krok 2: w ← 0
+krok 3: i ← 1
+krok 4: Dopóki i <= n oraz mk > 0
+krok 5:     K[i] ← mk div MASA[i]
+krok 6:     mk ← mk mod MASA[i]
+krok 7:     w ← w + (K[i] * CENA[i])
+krok 8:     i ← i + 1
+
+
+———————————————————————————————————————————————————————
+      2.3 │ Strategia I │ Strategia II │ Strategia III
+——————————│—————————————│——————————————│———————————————
+Zawartość │ rowerek     │ lalka        │ rowerek
+          │ duży miś    │ mały miś     │ lalka
+          │             │ duży miś     │ mały miś
+          │             │ klocki       │ 
+——————————│—————————————│——————————————│———————————————
+Wartość   │ 390zł       │ 236zł        │ 387zł
+———————————————————————————————————————————————————————
+
+
+2.4 ———————————————————————————————————————————————————————
+krok 1: Dla i = 1 do n wykonaj K[i] ← 0
+krok 2: w ← 0
+krok 3: i ← 1
+krok 4: Dopóki i <= n oraz mk - MASA[i] >= 0
+krok 5:     Jeżeli mk - MASA[i] >= 0
+krok 6:         K[i] ← 1
+krok 7:         mk ← mk - MASA[i]
+krok 8:         w ← w + (K[i] * CENA[i])
+krok 9:     i ← i + 1

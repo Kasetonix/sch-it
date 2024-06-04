@@ -23,10 +23,12 @@ int main() {
     
     GetRehs(reh, infile);
     sort(reh, reh + REH_NUM, comp);
+    cout << "Liczba prób: " << CalcMaxRehs(reh) << "\n";
 
     return 0;
 }
 
+// Funkcja otrzymująca listę prób z pliku
 void GetRehs(reh reh[], ifstream &infile) {
     unsigned short index = 0;
 
@@ -41,13 +43,17 @@ void GetRehs(reh reh[], ifstream &infile) {
     infile.close();
 }
 
+// Funkcja porównawcza
 bool comp(reh a, reh b) {
     return (a.beg * 60 + a.len < b.beg * 60 + b.len); 
 }
 
+// Funkcja zliczająca maksymalną liczbę prób
 unsigned short CalcMaxRehs(reh reh[]) {
     unsigned short reh_num = 1, last_reh = 0, index;
 
+    // co iterację sprawdzanie, czy następna próba zaczyna się przed końcem poprzedniej
+    // jeżeli tak, to następuje zwiększenie licznika
     for (index = 1; index < REH_NUM; index++) {
         if (reh[index].beg * 60 >= reh[last_reh].beg * 60 + reh[last_reh].len) {
             reh_num++;
