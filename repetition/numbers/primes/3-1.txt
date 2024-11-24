@@ -1,0 +1,10 @@
+SITO[1] <- FAŁSZ
+dla i = 2, 3, ..., N
+    SITO[i] <- PRAWDA
+
+dla i = 2, 3, ..., floor(sqrt(N))
+    jeżeli SITO[i] = PRAWDA
+        j <- i * i
+        dopóki j <= N wykonuj
+            SITO[j] <- FAŁSZ
+            j <- j + i

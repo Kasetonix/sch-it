@@ -60,6 +60,7 @@ unsigned int Deindexify(unsigned int num) {
     return 2 * num + 1;
 }
 
+// Tablica przygotowująca tablicę do działania algorytmu sita
 void PrepareTable(bool is_prime[], unsigned int max) {
     unsigned int index;
     is_prime[0] = false; // <- jedynka
@@ -74,18 +75,19 @@ void PrepareTable(bool is_prime[], unsigned int max) {
 // Funkcja tworząca tablicę z pierwszością liczb do maxa
 // (zwraca ona liczbę otrzymanych liczb pierwszych)
 void SoE(bool is_prime[], unsigned int max) {
-    unsigned int pdivisor, index; 
+    unsigned int pfactor, index; 
 
     // Dla każdego potencjalnego dzielnika...
-    for (pdivisor = 3; pdivisor * pdivisor <= max; pdivisor += 2) {
+    for (pfactor = 3; pfactor * pfactor <= max; pfactor += 2) {
         // Sprawdzanie czy jest on w tablicy -> jak nie, przechodzenie do następnego
-        if (!is_prime[Indexify(pdivisor)])
+        if (!is_prime[Indexify(pfactor)])
             continue;
 
         // dla każdej liczby oznaczonej jako pierwsza usuwanie wszystkich jej wielokrotności
-        // zaczynanie od trójki, bo dwójka by skutkowała wyszukiwaniem liczby parzystej
+        // zaczynanie od kwadratu liczby, bo wszystkie poprzednie dzielniki zostały usunięte
+        // we wcześniejszych iteracjach pętli
         // dodajemy dwa razy potencjalny dzielnik żeby nie szukać liczb parzystych
-        for (index = 3 * pdivisor; Indexify(index) <= max; index += 2 * pdivisor) {
+        for (index = pfactor * pfactor; Indexify(index) <= max; index += 2 * pfactor) {
             is_prime[Indexify(index)] = false;
         }
     }

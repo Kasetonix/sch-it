@@ -1,0 +1,3 @@
+3.2 --> Liczba liczb pierwszych: 21
+3.3 --> MAX: {910620; 9932}
+        MIN: {18676; 195}

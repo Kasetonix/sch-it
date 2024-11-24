@@ -45,11 +45,13 @@ void PrepareSet(set<unsigned int> &primes, unsigned int max) {
 // (zwraca ona liczbę otrzymanych liczb pierwszych)
 void SoE(set<unsigned int> &primes, unsigned int max) {
     unsigned int index, pfactor;
-    // Dodajemy do iteratora 2 lub 2 * pdivisor by omijać liczby parzyste
+    // Dodajemy do iteratora 2 lub 2 * pfactor by omijać liczby parzyste
     // Iteracja po kolejnych potencjalnych dzielnikach
     for (pfactor = 3; pfactor * pfactor <= max; pfactor += 2)
         // Usuwanie kolejnych wielokrotności potencjalnego dzielnika
         // (z wyjątkiem parzystych, których w zbiorze nie ma)
-        for (index = 3 * pfactor; index <= max; index += 2 * pfactor)
+        // zaczynanie od kwadratu liczby, bo wszystkie poprzednie dzielniki zostały usunięte
+        // we wcześniejszych iteracjach pętli
+        for (index = pfactor * pfactor; index <= max; index += 2 * pfactor)
             primes.erase(index);
 }

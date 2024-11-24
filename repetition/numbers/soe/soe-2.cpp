@@ -41,16 +41,18 @@ void PrepareTable(bool is_prime[], unsigned int max) {
 // Funkcja tworząca tablicę z pierwszością liczb do maxa
 // (zwraca ona liczbę otrzymanych liczb pierwszych)
 void SoE(bool is_prime[], unsigned int max) {
-    unsigned int pdivisor, index; 
+    unsigned int pfactor, index; 
 
     // Dla każdego potencjalnego dzielnika...
-    for (pdivisor = 2; pdivisor * pdivisor <= max; pdivisor++) {
+    for (pfactor = 2; pfactor * pfactor <= max; pfactor++) {
         // Sprawdzanie czy jest on w tablicy -> jak nie, przechodzenie do następnego
-        if (is_prime[pdivisor] == false)
+        if (is_prime[pfactor] == false)
             continue;
 
         // dla każdej liczby oznaczonej jako pierwsza usuwanie wszystkich jej wielokrotności
-        for (index = 2 * pdivisor; index <= max; index += pdivisor) {
+        // zaczynanie od kwadratu liczby, bo wszystkie poprzednie dzielniki zostały usunięte
+        // we wcześniejszych iteracjach pętli
+        for (index = pfactor * pfactor; index <= max; index += pfactor) {
             is_prime[index] = false;
         }
     }
