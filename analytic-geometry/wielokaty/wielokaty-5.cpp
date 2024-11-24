@@ -54,8 +54,10 @@ int main() {
     quad = GetQuadrilateralsFromFile(infile); 
 
     // Iteracja przez wszystkie czworokąty i sumowanie ich pól
-    for (index = 0; index < quad.size(); index++) 
+    for (index = 0; index < quad.size(); index++) {
         total_area += QuadsArea(quad[index]);
+        DrawQuad(quad[index]);
+    }
 
     // Obliczanie średniego pola
     avg_area = total_area / index;

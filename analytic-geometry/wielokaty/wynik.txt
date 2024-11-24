@@ -15,3 +15,7 @@ Druga maksymalna liczba punktów kratowych krawędzi; liczba krawędzi tego wiel
 
 /// 4.5 ///
 Średnie pole czworokąta: 656.20
+/// 4.5 ///
+Średnie pole czworokąta: 656.20
+/// 4.5 ///
+Średnie pole czworokąta: 656.20

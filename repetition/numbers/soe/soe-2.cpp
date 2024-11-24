@@ -1,33 +1,21 @@
 #include <iostream>
-#include <fstream>
 using std::cout;
 using std::ofstream;
 
 void PrepareTable(bool is_prime[], unsigned int max);
 void SoE(bool is_prime[], unsigned int max); 
-unsigned int CreateTable(unsigned int primes[], bool is_prime[], unsigned int max);
 bool IsTwinPrime(unsigned int prime, bool is_prime[]);
 
 int main() {
-    ofstream outfile;
-    outfile.open("sito.txt", std::ios::app);
-    if (!outfile.good()) {
-        cout << "Plik nie mógł być otwarty." << "\n";
-        return 1;
-    }
+    unsigned int a = 2, b = 1000000, index;
+    bool is_prime[b];
 
-    unsigned int max = 1200, prime_max_num = 200, prime_num;
-    bool is_prime[max];
-    unsigned int primes[prime_max_num];
+    PrepareTable(is_prime, b);
+    SoE(is_prime, b);
 
-    PrepareTable(is_prime, max);
-    SoE(is_prime, max);
-
-    unsigned int index;
-    for (index = 0; index < max; index++) 
+    for (index = 0; index < b; index++) 
         if (IsTwinPrime(index, is_prime))
-            outfile << "(" << index << "; " << index + 2 << ")  ";
-    outfile << "\n";
+            cout << "(" << index << "; " << index + 2 << ")" << "\n";
 
     return 0;
 }
@@ -40,6 +28,8 @@ void PrepareTable(bool is_prime[], unsigned int max) {
     is_prime[1] = false;
     is_prime[2] = true;
 
+    // zaznaczanie liczb parzysych jako nie-pierwszych, a
+    // nieparzystych jako potencjalnie pierwszych
     for (index = 3; index <= max; index++) {
         if (index % 2 == 0)
             is_prime[index] = false;
@@ -55,7 +45,7 @@ void SoE(bool is_prime[], unsigned int max) {
 
     // Dla każdego potencjalnego dzielnika...
     for (pdivisor = 2; pdivisor * pdivisor <= max; pdivisor++) {
-        // Sprawdzanie czy jest on w tablicy -> jak nie przechodzenie do następnego
+        // Sprawdzanie czy jest on w tablicy -> jak nie, przechodzenie do następnego
         if (is_prime[pdivisor] == false)
             continue;
 
@@ -64,17 +54,6 @@ void SoE(bool is_prime[], unsigned int max) {
             is_prime[index] = false;
         }
     }
-}
-
-unsigned int CreateTable(unsigned int primes[], bool is_prime[], unsigned int max) {
-    unsigned int index, prime_index = 0;
-    for (index = 0; index <= max; index++) {
-        if (!is_prime[index])
-            continue;
-        primes[prime_index] = index;
-        prime_index++;
-    }
-    return prime_index;
 }
 
 bool IsTwinPrime(unsigned int prime, bool is_prime[]) {
