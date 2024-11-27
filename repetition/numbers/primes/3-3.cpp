@@ -35,8 +35,8 @@ int main() {
     nop = CountPrimes(is_prime);
     unsigned primes[nop]; // Tworzenie tablicy z liczbami pierwszymi
     CreatePrimeArray(primes, is_prime); // Wypełnienie jej
-    GetNumOfSums(nums, primes); // Zliczanie rozkładów na sumu liczb pierwszych
-    // GetNumOfSums2(nums, primes, nop); // Zliczanie rozkładów na sumu liczb pierwszych
+    GetNumOfSums(nums, primes); // Zliczanie rozkładów na sumy liczb pierwszych
+    // GetNumOfSums2(nums, primes, nop); // Zliczanie rozkładów na sumy liczb pierwszych
     WriteAnswer(nums); // Znalezienie min/maxa i zwrócenie odpowiedzi
 
     return 0;

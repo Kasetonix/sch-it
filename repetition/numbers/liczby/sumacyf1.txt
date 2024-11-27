@@ -1,0 +1,4 @@
+[INT]: Liczba o największej sumie cyfr --> 395
+       +--------------------> Suma cyfr -> 27
+       Liczba o najmniejszej sumie cyfr -> 409
+       +--------------------> Suma cyfr -> 1
