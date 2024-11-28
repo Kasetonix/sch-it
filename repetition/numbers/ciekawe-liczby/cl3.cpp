@@ -75,10 +75,12 @@ void ReturnAnswer(unsigned num[]) {
         }
     }
 
-    cout << "3: " << "\n";
+    outfile << "3: " << "\n";
     for (index = 1; index <= 8; index++)
-        cout << "    Moc " << index << ": " << counter[index] << "\n";
+        outfile << "    Moc " << index << ": " << counter[index] << "\n";
 
-    cout << "    MAX: " << max_power_1 << "\n";
-    cout << "    MIN: " << min_power_1 << "\n";
+    outfile << "    MAX: " << max_power_1 << "\n";
+    outfile << "    MIN: " << min_power_1 << "\n";
+
+    outfile.close();
 }
