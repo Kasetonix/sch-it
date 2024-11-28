@@ -6,7 +6,7 @@ using std::ofstream;
 
 const unsigned FILE_LEN = 1000;
 void GetArray(unsigned num[]);
-unsigned CountOddFactors(unsigned num);
+bool HasThreeOddFactors(unsigned num);
 void ReturnAnswer(unsigned num[]);
 
 int main() {
@@ -31,28 +31,53 @@ void GetArray(unsigned num[]) {
         infile >> num[index];
 }
 
-// Funkcja zliczająca nieparzyste dzielniki
-unsigned CountOddFactors(unsigned num) {
-    unsigned factor = 2, counter = 0;
+bool HasThreeOddFactors(unsigned num) {
+    unsigned counter = 0, factor = 3;
+    if (num % 2 == 0)
+        return false;
 
-    // Sprawdzanie ile czynników pierwszych nieparzystych ma liczba
-    while (factor * factor <= num) {
-        // Przechodzenie do następnego czynnika
+    while (num >= factor) {
         if (num % factor != 0) {
-            factor++;
+            factor += 2;
             continue;
-        } 
-        // Dla nieparzystego dzielnika inkrementacja licznika
-        if (factor % 2 == 1)
-            counter++;
-        num /= factor;
+        }
+
+        while (num % factor == 0) {
+            num /= factor;
+        }
+
+        counter++;
+        factor += 2;
+        if (counter > 3)
+            return false;
     }
 
-    // Uwzględnianie ostatniego czynnika
-    if (num % 2 == 1)
-        counter++;
+    if (counter == 3)
+        return true;
+    return false;
 
-    return counter;
+    // unsigned counter = 0;
+    // unsigned factor = 3;
+    // if (num % 2 == 0)
+    //     return false;
+    //
+    // while (factor * factor <= num) {
+    //     if (num % factor == 0) {
+    //         while (num % factor == 0)
+    //             num /= factor;
+    //         counter++;
+    //     }
+    //     factor += 2;
+    //     if (factor > 3)
+    //         return false;
+    // }
+    // if (num != 1)
+    //     counter++;
+    //
+    // if (counter == 3)
+    //     return true;
+    // return false;
+
 }
 
 void ReturnAnswer(unsigned num[]) {
@@ -65,7 +90,7 @@ void ReturnAnswer(unsigned num[]) {
     }
     
     for (index = 0; index < FILE_LEN; index++)
-        if (CountOddFactors(num[index]))
+        if (HasThreeOddFactors(num[index]))
             counter++;
-    cout << counter << "\n";
+    outfile << "1: " << counter << "\n";
 }
