@@ -1,24 +1,28 @@
-#include <cstdint>
-#include <fstream>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdint>
 using std::cout;
+using std::string;
 using std::ifstream;
 using std::ofstream;
 
 const unsigned VN = 300; // Liczba wiosek
 struct Village {
-    unsigned long long start_elves = 0;
-    unsigned long long log_entry = 0;
+    unsigned long long start_elves;
+    string log_entry;
 };
 
 void GetData(Village village[]);
-unsigned long long BTD(unsigned long long bin);
+unsigned long long BTD(string bin);
 unsigned long long QP(unsigned long long base, unsigned long long power);
 
 int main() {
     Village village[VN];
     unsigned long long current_elves, max_elves = 0, min_elves = UINT64_MAX;
     unsigned index;
+
+    cout << "UINT64_MAX: " << min_elves << "\n";
 
     GetData(village);
 
@@ -31,8 +35,6 @@ int main() {
             min_elves = current_elves;
     }
 
-    cout << "2^63: " << QP(2, 63) << "\n";
-    cout << "DEC(1001010101010): " << BTD(1001010101010) << "\n";
     cout << "MAX: " << max_elves << "\n";
     cout << "MIN: " << min_elves << "\n";
 
@@ -54,20 +56,22 @@ void GetData(Village village[]) {
     infile.close();
 }
 
-// Binarny -> Dziesiętny
-unsigned long long BTD(unsigned long long bin) {
+
+// Binarny -> Dziesiętny [string -> uint_64]
+unsigned long long BTD(string bin) {
     unsigned long long dec = 0;
-    unsigned long long power_2 = 1;
+    unsigned power2 = 1;
+    int index;
 
-    while (bin > 0) {
-        // Jeżeli końcówka liczby w binarnym jest równa jeden, 
-        // to do wyniku dodajemy odpowiadającą jej potęgę dwójki
-        if (bin % 2 == 1)
-            dec += power_2;
+    // Iteracja od końca liczby w systemie binarnym
+    for (index = bin.size() - 1; index >= 0; index--) {
+        // Jeżeli sprawdzana cyfra jest jedynką
+        // dodanie odpowiedniej potęgi dwójki do wynikowej liczby
+        if (bin[index] == '1')
+            dec += power2;
 
-        // Przechodzimy do następnej cyfry
-        power_2 *= 2;
-        bin /= 10;
+        // Przejście do następnej potęgi dwójki
+        power2 *= 2;
     }
 
     return dec;
