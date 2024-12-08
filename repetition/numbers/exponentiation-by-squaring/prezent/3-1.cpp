@@ -2,21 +2,21 @@
 using std::cout;
 using std::cin;
 
-unsigned btd(unsigned bin);
-unsigned long long qp(unsigned long long base, unsigned power);
+unsigned BtD(unsigned long long bin);
+unsigned long long EbS(unsigned long long base, unsigned power);
 
 int main() {
     unsigned start_elves = 0, log_entry = 0;
     cout << "Podaj liczbę założycieli: "; cin >> start_elves;
     cout << "Podaj wpis z dziennika:   "; cin >> log_entry;
 
-    cout << "Liczba elfów:             " << qp(start_elves, btd(log_entry)) << "\n";
+    cout << "Liczba elfów:             " << EbS(start_elves, BtD(log_entry)) << "\n";
 
     return 0;
 }
 
 // Binarny -> Dziesiętny
-unsigned btd(unsigned bin) {
+unsigned BtD(unsigned long long bin) {
     unsigned long long dec = 0;
     unsigned power_2 = 1;
 
@@ -35,8 +35,8 @@ unsigned btd(unsigned bin) {
 }
 
 // Szybkie podnoszenie do potęgi
-unsigned long long qp(unsigned long long base, unsigned power) {
-    unsigned number = 1;
+unsigned long long EbS(unsigned long long base, unsigned power) {
+    unsigned long long number = 1;
 
     while (power > 0) {
         if (power % 2 == 1)
