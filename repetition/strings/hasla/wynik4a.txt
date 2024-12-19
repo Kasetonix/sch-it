@@ -1,0 +1,3 @@
+/// 4A ///
+Liczba haseł o parzystej liczbie znaków:    105
+Liczba haseł o nieparzystej liczbie znaków: 95
