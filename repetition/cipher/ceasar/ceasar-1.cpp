@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 using std::string;
-using std::cin;
 using std::cout;
 using std::ifstream;
 using std::ofstream;
