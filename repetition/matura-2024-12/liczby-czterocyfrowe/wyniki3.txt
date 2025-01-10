@@ -1,0 +1,3 @@
+/// 3.1 ///
+Pierwsza liczba będąca kwadratem: 4489
+Liczba liczb będących kwadratami: 20

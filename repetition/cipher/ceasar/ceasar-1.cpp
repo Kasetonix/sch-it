@@ -59,7 +59,7 @@ string CeasarCipher(string plaintext, unsigned short key) {
 
 void ReturnData(string words[]) {
     ofstream outfile;
-    unsigned index, key = 107 & ALPHABET_LEN;
+    unsigned index, key = 107 % ALPHABET_LEN;
 
     outfile.open(OUTPUT_FILE);
     if (!outfile.good()) {
