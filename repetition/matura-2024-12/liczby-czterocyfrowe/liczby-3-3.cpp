@@ -105,11 +105,12 @@ void ReturnData(Num num[]) {
     outfile.open(OUTFILE, std::ios::app);
 
     outfile << "/// 3.3 ///" << "\n";
+    outfile << "Liczby o różnicy równej oryginalnej liczbie:" << "\n";
 
     for (index = 0; index < LEN; ++index) {
         if (num[index].perm_diff == num[index].val) {
             eq_counter++;
-            outfile << num[index].val << "\n";
+            outfile << "--> " << num[index].val << "\n";
         }
 
         if (num[index].perm_diff > num[index].val)
@@ -118,8 +119,8 @@ void ReturnData(Num num[]) {
             lt_counter++;
     }
 
-    cout << "Różnica jest większa od liczby:  " << gt_counter << "\n";
-    cout << "Różnica jest mniejsza od liczby: " << lt_counter << "\n";
-    cout << "Różnica jest równa liczbie:      " << eq_counter << "\n";
+    outfile << "Różnica jest większa od liczby  " << gt_counter << " razy." << "\n";
+    outfile << "Różnica jest mniejsza od liczby " << lt_counter << " razy." << "\n";
+    outfile << "Różnica jest równa liczbie      " << eq_counter << " razy." << "\n";
     outfile.close();
 }

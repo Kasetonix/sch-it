@@ -1,0 +1,16 @@
+/// 4.1 ///
+Największe pole:  1545605418
+Najmniejsze pole: 10425
+/// 4.1 ///
+Największe pole:  1545605418
+Najmniejsze pole: 10425
+
+/// 4.2 ///
+Długość najdłuższego ciągu:      9
+Wysokość ostatniego prostokąta:  1001
+Szerokość ostatniego prostokąta: 627
+
+/// 4.2 ///
+Długość najdłuższego ciągu:      10
+Wysokość ostatniego prostokąta:  1001
+Szerokość ostatniego prostokąta: 627

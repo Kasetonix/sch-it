@@ -15,4 +15,8 @@ Liczba liczb będących kwadratami: 20
 6630
 
 /// 3.3 ///
-6174
+Liczby o różnicy równej oryginalnej liczbie:
+--> 6174
+Różnica jest większa od liczby  1052 razy.
+Różnica jest mniejsza od liczby 947 razy.
+Różnica jest równa liczbie      1 razy.
