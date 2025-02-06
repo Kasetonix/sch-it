@@ -5,7 +5,10 @@ using std::string;
 using std::ifstream;
 using std::ofstream;
 
-const unsigned FN = 1000; // Długość
+const unsigned FN = 1000; // Długość pliku
+const string INFILE = "dane_napisy.txt";
+const string OUTFILE = "wyniki_anagramy.txt";
+
 bool HasOneLetter(string str);
 bool AreAnagrams(string str1, string str2);
 bool ValidatePair(string str1, string str2);
@@ -16,14 +19,14 @@ int main() {
     ifstream infile; ofstream outfile;
 
     // Plik wejściowy
-    infile.open("dane_napisy.txt");
+    infile.open(INFILE);
     if (!infile.good()) {
         cout << "Plik wejściowy nie mógł być otwarty." << "\n";
         exit(1);
     }
 
     // Plik wyjściowy
-    outfile.open("wyniki_anagramy.txt");
+    outfile.open(OUTFILE, std::ios::app);
     if (!outfile.good()) {
         cout << "Plik wyjściowy nie mógł być otwarty." << "\n";
         exit(1);
@@ -36,7 +39,7 @@ int main() {
     }
 
     outfile << "/// 68.1 ///" << "\n";
-    outfile << "    Liczba par napisów jednolitych anagramowych: " << counter << "\n";
+    outfile << "Liczba par napisów jednolitych anagramowych: " << counter << "\n";
 
     infile.close();
     outfile.close();

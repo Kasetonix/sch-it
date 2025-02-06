@@ -1,0 +1,8 @@
+/// 68.1 ///
+Liczba par napisów jednolitych anagramowych: 9
+
+/// 68.2 ///
+Liczba anagramów: 93
+
+/// 68.3 ///
+Liczba napisów będących wzajemnie anagramami: 17
