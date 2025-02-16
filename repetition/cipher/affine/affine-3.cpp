@@ -29,7 +29,7 @@ struct Pair {
 void GetData(Pair pair[]);
 char EncodeChar(char c, Key key);
 string Encode(string plaintext, Key key);
-Key GetKey(Pair pair, bool rev);
+Key FindKey(Pair pair, bool rev);
 void ReturnData(Pair pair[]);
 
 int main() {
@@ -70,22 +70,21 @@ string Encode(string plaintext, Key key) {
     return ciphertext;
 }
 
-Key GetKey(Pair pair, bool rev) {
+Key FindKey(Pair pair, bool rev) {
     Key key;
 
-    switch (rev) {
-        case false:
-            for (key.multiplier = 0; key.multiplier <= MAX_KEYVAL; key.multiplier++)
-                for (key.summand = 0; key.summand <= MAX_KEYVAL; key.summand++)
-                    if (Encode(pair.plaintext, key) == pair.ciphertext)
-                        return key;
-            break;
-        case true:
-            for (key.multiplier = 0; key.multiplier <= MAX_KEYVAL; key.multiplier++)
-                for (key.summand = 0; key.summand <= MAX_KEYVAL; key.summand++)
-                    if (Encode(pair.ciphertext, key) == pair.plaintext)
-                        return key;
-
+    // Znajdowanie na siłę klucza szyfrującego
+    if (!rev) {
+        for (key.multiplier = 0; key.multiplier <= MAX_KEYVAL; key.multiplier++)
+            for (key.summand = 0; key.summand <= MAX_KEYVAL; key.summand++)
+                if (Encode(pair.plaintext, key) == pair.ciphertext)
+                    return key; 
+    // --||-- klucza deszyfrującego
+    } else {
+        for (key.multiplier = 0; key.multiplier <= MAX_KEYVAL; key.multiplier++)
+            for (key.summand = 0; key.summand <= MAX_KEYVAL; key.summand++)
+                if (Encode(pair.ciphertext, key) == pair.plaintext)
+                    return key;
     }
 
     return {0, 0};
@@ -107,7 +106,7 @@ void ReturnData(Pair pair[]) {
 
     outfile << "\n" << "/// 75.3 ///" << "\n";
     for (index = 0; index < LEN; index++)
-        outfile << index + 1 << ". " << "Klucz szyfrujący: " << CatKey(GetKey(pair[index], false)) << "  |  Klucz deszyfrujący: " << CatKey(GetKey(pair[index], true)) << "\n";
+        outfile << index + 1 << ". " << "Klucz szyfrujący: " << CatKey(FindKey(pair[index], false)) << "  |  Klucz deszyfrujący: " << CatKey(FindKey(pair[index], true)) << "\n";
 
     outfile.close();
 }
