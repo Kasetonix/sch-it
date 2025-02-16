@@ -14,3 +14,8 @@ Szerokość ostatniego prostokąta: 627
 Długość najdłuższego ciągu:      10
 Wysokość ostatniego prostokąta:  1001
 Szerokość ostatniego prostokąta: 627
+
+/// 4.3 ///
+Najszerszy prostokąt złożony z dwóch innych:  79506
+Najszerszy prostokąt złożony z trzech innych: 118786
+Najszerszy prostokąt złożony z pięciu innych: 180895

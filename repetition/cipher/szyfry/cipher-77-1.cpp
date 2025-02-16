@@ -18,7 +18,9 @@ void ReturnData(string ciphertext, unsigned key_counter);
 int main() {
     string plaintext, ciphertext, key = "LUBIMYCZYTAC";
     unsigned key_counter = 1;
-    ReturnData(VigenereEncode(GetText(), key, key_counter), key_counter);
+    ciphertext = VigenereEncode(GetText(), key, key_counter);
+    cout << key_counter << "\n";
+    ReturnData(ciphertext, key_counter);
 
     return 0;
 }

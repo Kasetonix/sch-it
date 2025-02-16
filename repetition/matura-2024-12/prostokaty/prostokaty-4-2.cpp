@@ -1,7 +1,5 @@
-#include <cstdint>
 #include <iostream>
 #include <fstream>
-using std::cout;
 using std::string;
 using std::ifstream;
 using std::ofstream;
