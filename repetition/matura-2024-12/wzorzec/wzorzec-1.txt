@@ -1,0 +1,5 @@
+LEN <- Długość tekstu
+
+for (unsigned index = 0; index < LEN - N; index++) {
+    for (unsigned vindex = 0; index < str.size())
+}
