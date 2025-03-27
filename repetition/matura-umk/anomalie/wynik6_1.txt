@@ -1,0 +1,1 @@
+Liczba wierszy z ciągami posortowanymi niemalejąco: 13
