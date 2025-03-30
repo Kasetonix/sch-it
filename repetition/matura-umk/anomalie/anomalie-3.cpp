@@ -97,9 +97,9 @@ void ReturnData(unsigned num[NUM][LEN], Coords route[NUM + LEN - 1]) {
     }
 
     cost = GetRoute(num, route);
-    cout << cost << "\n";
+    outfile << cost << "\n";
     for (unsigned index = 0; index < NUM + LEN - 1; index++) {
-        cout << "{ " << route[index].x << "; " << route[index].y << " }" << "\n"; 
+        outfile << "{ " << route[index].x << "; " << route[index].y << " }" << "\n"; 
     }
 
     outfile.close();
