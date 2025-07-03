@@ -41,8 +41,6 @@ void GetNums(vector<unsigned> &num) {
     for (index = 0; index < LEN; index++)
         infile >> num[index];
 
-
-
     infile.close();
 }
 
@@ -93,7 +91,6 @@ void Return(vector<unsigned> num) {
     outfile << "Różne:                      " << rep[0] << "\n";
     outfile << "Powtarzające się dwa razy:  " << rep[1] << "\n";
     outfile << "Powtarzające się trzy razy: " << rep[2] << "\n";
-
 
     outfile.close();
 }
